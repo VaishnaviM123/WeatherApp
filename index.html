@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather App - Main</title>
+    <link rel="stylesheet" href="./index.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+</head>
+<body class="d-flex flex-column justify-content-center align-self-center">
+    <div class="climate d-flex justify-content-around mt-3">
+        <img src="./image/CloudyDay.png" alt="">
+        <img src="./image/logo/Sunrise.png" alt="">
+        <img src="./image/RainyDay.png" alt="">
+        <img src="./image/SlightSnow.png" alt="">
+        <img src="./image/RainyNight.png" alt="">
+        <img src="./image/logo/sunset.png" style="background-color: rgb(245, 245, 220);" alt="">
+        <img src="./image/CloudyNight.png" alt="">
+    </div>
+    <div class="d1 text-white text-center m-5 p-5">
+        <h1 class="text-capitalize fw-bold">Discover the weather in every city you go</h1>
+        <h5>Our weather app provides real-time weather updates and forecasts to help you plan your day effectively.</h5>
+        <h5>User-friendly interface, you can easily check current weather conditions, including temperature, humidity, wind speed, and more, for any location worldwide.</h5>
+        <h5>Receive personalized weather alerts and notifications to stay informed about changing weather patterns.</h5>
+        <h5>Has you covered with accurate and up-to-date weather information.</h5>
+        <button type="button" class="my-4 px-4 py-3 btn btn-outline-secondary border-3 fs-5 fw-bold rounded-pill" onclick="redirect()">Check Weather</button>
+    </div>
+</body>
+<script>
+    function redirect(){
+        window.location='main.html'
+    }   
+</script>
+</html>

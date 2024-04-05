@@ -1,0 +1,153 @@
+body{
+    background-image: linear-gradient(rgba(255, 255, 255, 0),rgba(0,0,0,0.1),rgba(0,0,0,0.1),rgba(0,0,0,0.1)), url("./image/bg-2.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+    background-position: center;
+}
+.c1{
+    position: relative;
+    width: 500px;
+    height: 55px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.c1 input{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: transparent;
+    outline: none;
+    border-radius: 10px;
+    font-size: 22px;
+    border: 2px solid white;
+    color: white;
+    font-weight: 600;
+    text-transform: uppercase;
+    padding: 0 48px 0 50px;
+}
+.c1 input::placeholder{
+    text-transform: capitalize;
+    color: white;
+}
+.b1{
+    position: absolute;
+    left: 3px;
+    cursor: auto;
+}
+.b3{
+    background: transparent;
+    position: absolute;
+    right: 3px;
+    cursor: pointer;
+}
+.c3{
+    width: 500px;
+    height: 500px;
+    background-color: rgba(255, 255, 255, 0.03);
+    line-height: 2rem;
+    border-radius: 20px;
+}
+.c2{
+    width: 400px;
+    background-color: rgba(255, 255, 255, 0.04);
+    margin-bottom: 10px;
+    padding: 5px;
+    border-radius: 25px;
+}
+.c2 img{
+    width: 120px;
+    height: 120px;
+}
+.c4 {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.01),rgba(0, 0, 0, 0.4),rgba(0, 0, 0, 0.2),rgba(0, 0, 0, 0.01));
+}
+@media (min-width: 1300px) {
+    .c5{
+        position: absolute;
+        top: 260px;
+    }
+    .c6{
+        position: absolute;
+        top: 150px;
+    }
+}
+@media (min-width: 1200px) and (max-width: 1299px) {
+    .c5{
+        position: absolute;
+        top: 285px;
+    }
+    .c6{
+        position: absolute;
+        top: 165px;
+    }
+}
+@media ((min-width: 900px) and (max-width: 1199px)) {
+    .c4 {
+        margin-top: 80px;
+    }
+    .c5{
+        position: absolute;
+        top: 347px;
+    }
+    .c6{
+        position: absolute;
+        top: 225px;
+    }
+    .c7{
+        position: absolute;
+        top: 760px;
+    }
+}
+@media ((min-width: 570px) and (max-width: 899px)) {
+    .c4 {
+        margin-top: 80px;
+    }
+    .c5{
+        position: absolute;
+        top: 347px;
+    }
+    .c6{
+        position: absolute;
+        top: 225px;
+    }
+    .c7{
+        position: absolute;
+        top: 1245px;
+    }
+    .c3{
+        position: absolute;
+        top: 685px;
+    }
+}
+@media ((min-width: 300px) and (max-width: 569px)) {
+    .c4 {
+        margin-top: 80px;
+    }
+    .c5{
+        position: absolute;
+        top: 347px;
+    }
+    .c6{
+        position: absolute;
+        top: 225px;
+    }
+    .c7{
+        position: absolute;
+        top: 1245px;
+    }
+    .c3{
+        position: absolute;
+        top: 685px;
+    }
+    .b1{
+        left: 60px;
+    }
+    .b3{
+        right: 60px;
+    }
+    .c1 input{
+        width: 75%;
+    }
+}

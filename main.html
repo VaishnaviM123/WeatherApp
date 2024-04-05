@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="main.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <title>Weather App - Home</title>
+</head>
+<body>
+    <div class="d-flex justify-content-center mt-1 pt-4">
+        <div class="c1">
+            <i class="fa-solid b1 fs-2 ps-2 fa-location-dot text-white"></i>
+            <input type="search" id="cname" placeholder="Enter the city name">
+            <button type="button" class="b3 btn fs-4" onclick="display()"><i class="fa-solid fa-magnifying-glass text-white"></i></button>
+        </div>
+    </div>
+    <div class="text-white c4 d-flex justify-content-around align-items-center">
+        <div class="d-flex justify-content-center flex-column">
+            <div class="c2">
+                <h3 class="text-center">Temperature</h3>
+                <div class="d-flex justify-content-around align-items-center">
+                    <img src="./image/logo/Temp.png" style="height: 180px;">
+                    <div class="d-flex justify-content-center flex-column">
+                        <p id="temp"><span style="font-size: 85px; font-weight: 800;">--</span></p>
+                        <p id="temp2"></p>
+                    </div>
+                </div>
+            </div>
+            <div class="c2">
+                <div class="d-flex justify-content-around">
+                    <img src="./image/logo/sr.png" alt="">
+                    <div class="d-flex justify-content-center flex-column">
+                        <h3 class="text-center">Sun Rise</h3>
+                        <p id="ss" class="text-right"><span style="font-size: 85px; font-weight: 600;">--</span></p>
+                    </div>
+                </div>
+                <div class="d-flex justify-content-around">
+                    <img src="./image/logo/ss.png" alt="">
+                    <div class="d-flex justify-content-center flex-column">
+                        <h3 class="text-center">Sun Set</h3>
+                        <p id="sr" class="text-right"><span style="font-size: 85px; font-weight: 600;">--</span></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="c3 mt-5 text-center d-flex justify-content-center align-items-center flex-column">
+            <p id="main"><span style="font-size: 100px; font-weight: 1000;">--</span></p>
+            <p id="imgSelec"></p>
+        </div>
+        <div class="c7 d-flex justify-content-center flex-column">
+            <div class="c2">
+                <h3 class="text-center">Wind Speed</h3>
+                <div class="d-flex justify-content-around">
+                    <img src="./image/logo/Windy.png" alt="">
+                    <p id="ws" class="text-right"><span style="font-size: 95px; font-weight: 800;">--</span></p>
+                </div>
+            </div>
+            <div class="c2">
+                <h3 class="text-center">Humidity</h3>
+                <div class="d-flex justify-content-around">
+                    <img src="./image/logo/h.png" alt="">
+                    <p id="h" class="text-right"><span style="font-size: 95px; font-weight: 800;">--</span></p>
+                </div>
+            </div>
+            <div class="c2">
+                <h3 class="text-center">Air Pressure</h3>
+                <div class="d-flex justify-content-around">
+                    <img src="./image/logo/p.png" alt="">
+                    <p id="p" class="text-right"><span style="font-size: 95px; font-weight: 800;">--</span></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+<script>
+    function display(){
+    var cityN=cname.value
+    fetch(`https://api.openweathermap.org/data/2.5/weather?q=${cityN}&appid=5b4bee0ba241d092159faf007e166080`).then(out=>out.json()).then(res=>displayData(res)).catch(error => {
+            alert(`${cityN} not found.`);
+        });
+    function displayData(outarray){
+        var desc=outarray['weather'][0].description
+        var temp1=(outarray['main'].temp - 273.15).toFixed(2)
+        var fl1=(outarray['main'].feels_like - 273.15).toFixed(2)
+        var ws1=(outarray['wind'].speed * 3.6).toFixed(2)
+        var ss1=new Date(outarray['sys'].sunrise * 1000).toLocaleTimeString();
+        var sr1=new Date(outarray['sys'].sunset * 1000).toLocaleTimeString();
+        var p1=outarray['main'].pressure
+        var h1=outarray['main'].humidity
+        var c=outarray['sys'].country
+        
+        const today = new Date();
+        const daysOfWeek = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+        const monthsOfYear = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+        var dayOfWeek = daysOfWeek[today.getDay()];
+        var dayOfMonth = today.getDate();
+        var month = monthsOfYear[today.getMonth()];
+        var formattedDate = `${dayOfWeek} ${dayOfMonth} ${month}`;
+
+        main.innerHTML=`<p class="fw-bold text-uppercase" style="font-size: 320%;">${c}  -  ${cityN}</p>
+            <p class="fw-sembold" style="font-size: 130%;">${formattedDate}</p>
+            <p class="fs-1 fw-bold">${desc}</p>`
+        switch (desc) {
+            case 'few clouds':
+                imgSelec.innerHTML =`<img src="./image/CloudyNight.png" style="width: 320px; height: 240px;" alt="">`
+                break;
+            case 'light rain':
+                imgSelec.innerHTML =`<img src="./image/RainyNight.png" alt="">`
+                break;
+            case 'haze':
+                imgSelec.innerHTML =`<img src="./image/haze.png" style="width: 320px; height: 240px;" alt="">`
+                break;
+            case 'clear sky':
+                imgSelec.innerHTML =`<img src="./image/sky.png" style="width: 320px; height: 240px;" alt="">`
+                break;
+            case 'overcast clouds':
+                imgSelec.innerHTML =`<img src="./image/CloudyNight.png" style="width: 320px; height: 240px;" alt="">`
+                break;
+            case 'light snow':
+                imgSelec.innerHTML =`<img src="./image/SlightSnow.png" style="width: 320px; height: 240px;" alt="">`
+                break;
+            case 'scattered clouds':
+                imgSelec.innerHTML =`<img src="./image/CloudyNight.png" style="width: 320px; height: 240px;" alt="">`
+                break;
+            case 'broken clouds':
+                imgSelec.innerHTML =`<img src="./image/CloudyNight.png" style="width: 320px; height: 240px;" alt="">`
+                break;
+            default:
+                imgSelec.innerHTML =`<img src="./image/CloudyDay.png" style="width: 320px; height: 240px;" alt="">`
+                break;
+        }
+        temp.innerHTML= `<i class="fa-solid fa-arrow-down"></i><span style="font-size:70px;">${temp1}°</span><span class="fs-3 c6">C</span>`
+        temp2.innerHTML= `<i class="fa-solid fa-arrow-up fw-bold"></i><span style="font-size:70px;">${fl1}°</span><span class="fs-2 c5">C</span>`
+        ws.innerHTML=`<span style="font-size:60px;">${ws1}</span><span class="fs-2">Km/h</span>`
+        ss.innerHTML=`<p class="fs-1">${ss1}</p>`
+        sr.innerHTML=`<p class="fs-1">${sr1}</p>`
+        p.innerHTML=`<span style="font-size: 80px;">${p1}</span><span class="fs-3">hPa</span>`
+        h.innerHTML=`<span style="font-size: 80px;">${h1}</span><span class="fs-3">%</span>`
+    }
+}
+</script>
+</html>
